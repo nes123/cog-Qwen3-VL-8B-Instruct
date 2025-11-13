@@ -90,12 +90,9 @@ class Predictor(BasePredictor):
             messages, tokenize=False, add_generation_prompt=True
         )
 
-        # Process all vision data
-        image_inputs, video_inputs = process_vision_info(messages)
         batch = self.processor(
             text=[text],
-            images=image_inputs,
-            videos=video_inputs,
+            images=frames,
             padding=True,
             return_tensors="pt",
         ).to(self.device)
